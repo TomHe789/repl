@@ -40,6 +40,7 @@ export interface Props {
   editorOptions?: {
     showErrorText?: string | false
     autoSaveText?: string | false
+    enableVimText?: string | false
     monacoOptions?: monaco.editor.IStandaloneEditorConstructionOptions
   }
   splitPaneOptions?: {
@@ -48,7 +49,8 @@ export interface Props {
   }
 }
 
-const autoSave = defineModel<boolean>({ default: true })
+const autoSave = defineModel<boolean>('autoSave', { default: true })
+const enableVimMode = defineModel<boolean>('enableVimMode', { default: false })
 const props = withDefaults(defineProps<Props>(), {
   theme: 'light',
   previewTheme: false,
@@ -82,6 +84,7 @@ const outputSlotName = computed(() => (props.layoutReverse ? 'left' : 'right'))
 provide(injectKeyProps, {
   ...toRefs(props),
   autoSave,
+  enableVimMode,
 })
 provide(
   injectKeyPreviewRef,
@@ -133,8 +136,9 @@ defineExpose({ reload })
   margin: 0;
   overflow: hidden;
   font-size: 13px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-soft);
 }
 

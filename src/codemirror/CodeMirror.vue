@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<(e: 'change', value: string) => void>()
 
 const el = useTemplateRef('container')
-const { autoResize, autoSave } = inject(injectKeyProps)!
+const { autoResize, autoSave, enableVimMode } = inject(injectKeyProps)!
 let editor: CodeMirror.Editor
 
 const emitChangeEvent = () => {
@@ -69,6 +69,10 @@ onMounted(() => {
     if (props.value !== cur) {
       editor.setValue(props.value)
     }
+  })
+
+  watchEffect(() => {
+    editor.setOption('keyMap', enableVimMode.value ? 'vim' : 'sublime')
   })
 
   watchEffect(() => {

@@ -12,7 +12,8 @@ const props = defineProps<{
   editorComponent: EditorComponentType
 }>()
 
-const { store, autoSave, editorOptions } = inject(injectKeyProps)!
+const { store, autoSave, enableVimMode, editorOptions } =
+  inject(injectKeyProps)!
 const showMessage = ref(getItem())
 
 const onChange = debounce((code: string) => {
@@ -53,6 +54,11 @@ watch(showMessage, () => {
         v-if="editorOptions?.autoSaveText !== false"
         v-model="autoSave"
         :text="editorOptions?.autoSaveText || 'Auto Save'"
+      />
+      <ToggleButton
+        v-if="editorOptions?.enableVimText !== false"
+        v-model="enableVimMode"
+        :text="editorOptions?.enableVimText || 'Enable Vim Mode'"
       />
     </div>
   </div>

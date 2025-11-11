@@ -16,7 +16,7 @@ export type EditorComponentType = Component<EditorProps>
 export type OutputModes = 'preview' | 'ssr output' | EditorMode
 
 export const injectKeyProps: InjectionKey<
-  ToRefs<Required<Props & { autoSave: boolean }>>
+  ToRefs<Required<Props & { autoSave: boolean; enableVimMode: boolean }>>
 > = Symbol('props')
 export const injectKeyPreviewRef: InjectionKey<
   ComputedRef<HTMLDivElement | null>

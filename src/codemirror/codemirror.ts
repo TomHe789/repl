@@ -22,5 +22,6 @@ import 'codemirror/addon/dialog/dialog.js'
 
 // keymap
 import 'codemirror/keymap/sublime.js'
+import 'codemirror/keymap/vim.js'
 
 export default CodeMirror

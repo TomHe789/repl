@@ -57,6 +57,7 @@ const App = {
         store,
         theme: theme.value,
         previewTheme: previewTheme.value,
+        // editor: CodeMirrorEditor,
         editor: MonacoEditor,
         showOpenSourceMap: true,
         // layout: 'vertical',
